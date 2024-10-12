@@ -17,8 +17,9 @@
 
   outputs =
     inputs:
-    inputs.snowfall-lib.mkFlake {
+    inputs.snowfall-lib.mkFlake rec {
       inherit inputs;
-      src = ./develop;
+      src = ./.;
+      snowfall.root = "${src}/develop";
     };
 }
