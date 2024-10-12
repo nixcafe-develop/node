@@ -17,8 +17,8 @@ inputs.pre-commit-hooks.lib.${system}.run {
     #   enable = true;
     #   name = "my-formatter";
     #   description = "Run My Formatter on all files in the project";
-    #   files = "\.mtl$";
-    #   entry = "pnpm run format";
+    #   files = "\.js$";
+    #   entry = "${pkgs.my-formatter}/bin/ctl";
     # };
   };
 }
