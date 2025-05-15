@@ -14,6 +14,9 @@ mkShell {
     node2nix
     node
     corepack
+
+    # @antfu/ni
+    ni
   ];
 
   shellHook = ''
