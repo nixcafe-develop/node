@@ -17,6 +17,9 @@ mkShell {
 
     # @antfu/ni
     ni
+
+    bun
+    deno
   ];
 
   shellHook = ''
