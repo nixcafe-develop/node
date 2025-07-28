@@ -25,6 +25,9 @@ mkShell {
   shellHook = ''
     ${commitCheck}
 
+    # Add node_modules/.bin to PATH
+    # export PATH=$PWD/node_modules/.bin:$PATH
+
     # Disable download prompt for corepack
     export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
     echo "node version: `${node}/bin/node --version`"
