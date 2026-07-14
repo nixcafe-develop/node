@@ -5,7 +5,7 @@
   ...
 }:
 let
-  commitCheck = inputs.self.checks.${system}.pre-commit-check.shellHook;
+  commitCheck = inputs.self.checks.${system}.git-hooks.shellHook;
   node = pkgs.nodejs;
 in
 pkgs.mkShell {
@@ -34,5 +34,5 @@ pkgs.mkShell {
     echo "node version: `${node}/bin/node --version`"
   '';
 
-  buildInputs = inputs.self.checks.${system}.pre-commit-check.enabledPackages;
+  buildInputs = inputs.self.checks.${system}.git-hooks.enabledPackages;
 }
