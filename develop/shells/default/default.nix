@@ -1,7 +1,6 @@
 {
   inputs,
   pkgs,
-  mkShell,
   system,
   ...
 }:
@@ -9,7 +8,7 @@ let
   commitCheck = inputs.self.checks.${system}.pre-commit-check.shellHook;
   node = pkgs.nodejs;
 in
-mkShell {
+pkgs.mkShell {
   packages = with pkgs; [
     node2nix
     node
@@ -25,8 +24,10 @@ mkShell {
   shellHook = ''
     ${commitCheck}
 
-    # Add node_modules/.bin to PATH
-    # export PATH=$PWD/node_modules/.bin:$PATH
+    # Add node_modules/.bin to PATH if it exists
+    if [ -d "$PWD/node_modules/.bin" ]; then
+      export PATH="$PWD/node_modules/.bin:$PATH"
+    fi
 
     # Disable download prompt for corepack
     export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
