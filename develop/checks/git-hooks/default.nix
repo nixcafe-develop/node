@@ -1,5 +1,5 @@
 { inputs, system, ... }:
-inputs.pre-commit-hooks.lib.${system}.run {
+inputs.git-hooks.lib.${system}.run {
   src = ../../..;
 
   # see: https://devenv.sh/reference/options/#pre-commithooks
