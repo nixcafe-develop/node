@@ -51,7 +51,6 @@ ni add express      # install dependencies
 | `ni` / `nr` / `nlx` / `nun` / `nci` | [@antfu/ni](https://github.com/antfu/ni) — unified package manager CLI |
 | `bun` | Bun JavaScript runtime & bundler |
 | `deno` | Deno JavaScript/TypeScript runtime |
-| `node2nix` | Convert package.json to Nix expressions |
 
 `node_modules/.bin` is automatically added to `PATH` when the directory exists.
 
