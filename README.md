@@ -1,46 +1,31 @@
-# Nix Flake Node.js Development Template
+# Nix Flake · Node.js Dev Template
 
-Nix flake template for Node.js development environment — a reproducible, declarative dev shell with Node.js, npm/pnpm/yarn (corepack), [@antfu/ni](https://github.com/antfu/ni), Bun, Deno, and git pre-commit hooks. Zero-config, ready in one command.
+A reproducible, declarative Node.js dev shell powered by [purr](https://github.com/nixcafe/purr) + [git-hooks.nix](https://github.com/cachix/git-hooks.nix). One-shot init, zero global cruft.
 
-Use this template to bootstrap a new Node.js project with a Nix flake-based development environment. No global installs, no version conflicts — everything pinned by `flake.lock`.
+`nix` `node` `npm` `pnpm` `yarn` `bun` `deno` `corepack` `ni` `git-hooks` `eslint` `biome` `denofmt` `direnv` `purr` `flake` `reproducible` `template`
 
-Part of the [develop-templates](https://github.com/nixcafe/develop-templates) collection (`nix flake init` ready).
+Part of the [develop-templates](https://github.com/nixcafe/develop-templates) collection (`nix flake init`-ready).
 
 ## Usage
 
-### Quick Start with `nix flake init`
-
 ```bash
+# initialize a project from the template
 nix flake init -t "github:nixcafe/develop-templates#node" --refresh
-```
 
-To shorten future commands, add a [Nix registry](https://nixos.org/manual/nix/stable/command-ref/new-cli/nix3-registry) entry:
-
-```bash
-nix registry add beans "github:nixcafe/develop-templates"
-nix flake init -t beans#node
-```
-
-> **Tip**: If you use [cattery-modules](https://github.com/nixcafe/cattery-modules), `beans` is pre-registered — just run `nix flake init -t beans#node`.
-
-### Create a New Repository from This Template
-
-```bash
+# or create a full repo
 gh repo create my-project --template nixcafe/node --clone
-```
 
-Or click **"Use this template"** → **"Create a new repository"** on [GitHub](https://github.com/nixcafe/node).
-
-### Enter the Dev Shell & Start Coding
-
-```bash
-direnv allow        # auto-load flake on cd
+# enter the shell (auto-loads via direnv if .envrc is present)
+direnv allow
 # or without direnv:
 nix develop
 
-ni init             # bootstrap package.json
-ni add express      # install dependencies
+# bootstrap & install deps
+ni init
+ni add express
 ```
+
+> **Tip**: Register a short alias — `nix registry add beans "github:nixcafe/develop-templates"` — then `nix flake init -t beans#node`. If you use [cattery-modules](https://github.com/nixcafe/cattery-modules), `beans` is pre-registered.
 
 ## What's Inside
 
@@ -52,13 +37,13 @@ ni add express      # install dependencies
 | `bun` | Bun JavaScript runtime & bundler |
 | `deno` | Deno JavaScript/TypeScript runtime |
 
-`node_modules/.bin` is automatically added to `PATH` when the directory exists.
+`node_modules/.bin` is auto-added to `PATH` when it exists.
 
-## Customizing the Dev Shell
+## Customizing
 
-### Enable Pre-commit Hooks (Linting, Formatting)
+### Enable pre-commit hooks
 
-Edit `develop/checks/git-hooks/default.nix`:
+Edit `develop/checks/git-hooks/default.nix` — all hooks are disabled by default:
 
 ```nix
 hooks = {
@@ -68,9 +53,9 @@ hooks = {
 };
 ```
 
-See [git-hooks.nix](https://github.com/cachix/git-hooks.nix) for the full hook list.
+See [git-hooks.nix](https://github.com/cachix/git-hooks.nix) for the full hook catalog.
 
-### Pin a Specific Node.js Version
+### Pin a specific Node.js version
 
 ```nix
 # flake.nix
@@ -82,7 +67,7 @@ outputs = inputs:
   };
 ```
 
-### Add Extra System Packages
+### Add system packages
 
 ```nix
 # develop/shells/default/default.nix
@@ -98,10 +83,14 @@ packages = with pkgs; [
 
 ```
 .
-├── flake.nix                        # Flake entry (inputs & mkFlake)
-├── .envrc                           # direnv: auto-load flake
-├── develop/
-│   ├── shells/default/default.nix   # Dev shell definition
-│   └── checks/git-hooks/default.nix # Pre-commit hook config
-└── .gitignore
+├── flake.nix
+├── .envrc
+├── .gitignore
+└── develop/
+    ├── shells/
+    │   └── default/
+    │       └── default.nix
+    └── checks/
+        └── git-hooks/
+            └── default.nix
 ```
