@@ -1,31 +1,41 @@
 # Nix Flake · Node.js Dev Template
 
-A reproducible, declarative Node.js dev shell powered by [purr](https://github.com/nixcafe/purr) + [git-hooks.nix](https://github.com/cachix/git-hooks.nix). One-shot init, zero global cruft.
+> purr · git-hooks · nodejs · corepack · bun · direnv · nix-flake
 
-`nix` `node` `npm` `pnpm` `yarn` `bun` `deno` `corepack` `ni` `git-hooks` `eslint` `biome` `denofmt` `direnv` `purr` `flake` `reproducible` `template`
+Nix flake template for Node.js development — reproducible dev shell with Node.js runtime, Bun, Deno, unified package manager CLI (ni), and git pre-commit hooks. Built on [purr](https://flakehub.com/f/nixcafe/purr) and [git-hooks.nix](https://flakehub.com/f/cachix/git-hooks.nix).
 
 Part of the [develop-templates](https://github.com/nixcafe/develop-templates) collection (`nix flake init`-ready).
 
-## Usage
+## Quick Start
+
+### `nix flake init`
 
 ```bash
-# initialize a project from the template
 nix flake init -t "github:nixcafe/develop-templates#node" --refresh
+```
 
-# or create a full repo
-gh repo create my-project --template nixcafe/node --clone
+Register an alias:
+```bash
+nix registry add beans "github:nixcafe/develop-templates"
+nix flake init -t beans#node
+```
 
-# enter the shell (auto-loads via direnv if .envrc is present)
+> **Tip**: With [cattery-modules](https://github.com/nixcafe/cattery-modules), `beans` is pre-registered.
+
+### Create from Template
+
+```bash
+gh repo create my-node-project --template nixcafe/node --clone
+```
+
+### Enter the Dev Shell
+
+```bash
 direnv allow
-# or without direnv:
-nix develop
-
 # bootstrap & install deps
 ni init
 ni add express
 ```
-
-> **Tip**: Register a short alias — `nix registry add beans "github:nixcafe/develop-templates"` — then `nix flake init -t beans#node`. If you use [cattery-modules](https://github.com/nixcafe/cattery-modules), `beans` is pre-registered.
 
 ## What's Inside
 
