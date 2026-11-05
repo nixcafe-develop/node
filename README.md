@@ -68,14 +68,13 @@ See [git-hooks.nix](https://github.com/cachix/git-hooks.nix) for the full hook c
 ### Pin a specific Node.js version
 
 ```nix
-# flake.nix
-outputs = inputs:
-  inputs.purr.lib.mkFlake {
-    inherit inputs;
-    src = ./develop;
-    override = final: prev: { nodejs = final.nodejs_22; };
-  };
+# develop/overlays/node/default.nix
+final: _prev: {
+  nodejs = final.nodejs_22;
+}
 ```
+
+purr auto-discovers overlays under `develop/overlays/` and applies them to `pkgs`.
 
 ### Add system packages
 
