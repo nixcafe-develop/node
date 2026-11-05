@@ -25,7 +25,7 @@ nix flake init -t beans#node
 ### Create from Template
 
 ```bash
-gh repo create my-node-project --template nixcafe/node --clone
+gh repo create my-node-project --template nixcafe-develop/node --clone
 ```
 
 ### Enter the Dev Shell
